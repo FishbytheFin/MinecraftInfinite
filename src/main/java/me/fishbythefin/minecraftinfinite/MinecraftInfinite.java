@@ -1,6 +1,8 @@
 package me.fishbythefin.minecraftinfinite;
 
 import com.mojang.logging.LogUtils;
+import me.fishbythefin.minecraftinfinite.item.ModCreativeModeTabs;
+import me.fishbythefin.minecraftinfinite.item.ModItems;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -29,6 +31,12 @@ public class MinecraftInfinite {
 
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
+
+        //Registry
+        ModCreativeModeTabs.register(modEventBus);
+
+        ModItems.register(modEventBus);
+
         modEventBus.addListener(this::addCreative);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
@@ -40,6 +48,9 @@ public class MinecraftInfinite {
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
+//        if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
+//            event.accept(ModItems.CHOCOLATE_MILK);
+//        }
     }
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
